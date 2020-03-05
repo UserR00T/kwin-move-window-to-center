@@ -17,8 +17,12 @@ registerShortcut("MoveWindowToCenter", "Move Window to Center", "Meta+C", functi
     var client = workspace.activeClient;
     if (client.moveable) {
         var maxArea = workspace.clientArea(KWin.MaximizeArea, client);
-        const width = client.width > 1622 ? client.width : 1622
-        const height = client.height > 853 ? client.height : 853
+        const max = {
+          width: maxArea.width * 0.9,
+          height: maxArea.height * 0.9
+        };
+        const width = Math.max(client.width, max.width);
+        const height = Math.max(client.height, max.height);
         client.geometry = {
             x: maxArea.x + (maxArea.width - width) / 2,
             y: maxArea.y + (maxArea.height - height) / 2,
