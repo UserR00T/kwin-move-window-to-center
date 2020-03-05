@@ -17,11 +17,13 @@ registerShortcut("MoveWindowToCenter", "Move Window to Center", "Meta+C", functi
     var client = workspace.activeClient;
     if (client.moveable) {
         var maxArea = workspace.clientArea(KWin.MaximizeArea, client);
+        const width = client.width > 1622 ? client.width : 1622
+        const height = client.height > 853 ? client.height : 853
         client.geometry = {
-            x: maxArea.x + (maxArea.width - client.width) / 2,
-            y: maxArea.y + (maxArea.height - client.height) / 2,
-            width: client.width,
-            height: client.height
+            x: maxArea.x + (maxArea.width - width) / 2,
+            y: maxArea.y + (maxArea.height - height) / 2,
+            width: width,
+            height: height
         };
     }
 });
